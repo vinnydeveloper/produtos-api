@@ -1,10 +1,10 @@
-const EventsModel = require("../../models/produtos");
+const PrdutosModel = require("../../models/produtos");
 
 module.exports = {
   async create(req, res, next) {
     try {
-      const newEvent = await EventsModel.create(req.body);
-      return res.status(201).json(newEvent);
+      const newProduto = await PrdutosModel.create(req.body);
+      return res.status(201).json(newProduto);
     } catch (error) {
       return next(error);
     }
@@ -12,14 +12,14 @@ module.exports = {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const eventUpdated = await EventsModel.findOneAndUpdate(
+      const produtoUpdated = await PrdutosModel.findOneAndUpdate(
         { _id: id },
         req.body,
         {
           new: true,
         }
       );
-      return res.status(200).json(eventUpdated);
+      return res.status(200).json(produtoUpdated);
     } catch (error) {
       return next(error);
     }
@@ -28,7 +28,7 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      await EventsModel.deleteOne({ _id: id });
+      await PrdutosModel.deleteOne({ _id: id });
 
       return res.sendStatus(204);
     } catch (error) {
@@ -39,18 +39,18 @@ module.exports = {
   async getOne(req, res, next) {
     try {
       const { id } = req.params;
-      const event = await EventsModel.findOne({ _id: id });
+      const produto = await PrdutosModel.findOne({ _id: id });
 
-      return res.json(event);
+      return res.json(produto);
     } catch (error) {
       return next(error);
     }
   },
   async getAll(req, res, next) {
     try {
-      const events = await EventsModel.find();
+      const produtos = await PrdutosModel.find();
 
-      return res.json(events);
+      return res.json(produtos);
     } catch (error) {
       return next(error);
     }

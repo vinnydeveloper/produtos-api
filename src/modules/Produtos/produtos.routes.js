@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
-const controller = require("./events.controller");
-const validation = require("./events.validation");
+const controller = require("./produtos.controller");
+const validation = require("./produtos.validation");
 const router = Router();
 
 router.get("/", controller.getAll);
